@@ -29,7 +29,7 @@ export default {
             domainName: window.siteDomain,
             courseName: window.courseSlug,
             currentIndex:null,
-            courseName:"node"
+            // courseName:"node"
             // courseName: "rest-api-node-mongodb"
         };
     },

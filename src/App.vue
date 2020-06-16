@@ -51,9 +51,9 @@
         domainName: window.siteDomain,
         courseTitle:null,
         active:false,
-        courseName: "node"
+        // courseName: "node"
         // courseName:"rest-api-node-mongodb"
-        // courseName: window.courseSlug
+        courseName: window.courseSlug
       }
     },
     components: {
