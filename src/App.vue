@@ -16,18 +16,23 @@
         <div class="app__sidebar">
             <ol class="main-nav">
                 <li v-for="(lesson,key) in filteredLessons" >
-                  <Accordion :title="lesson.name">
-                    <ul id="nav">
-                      <li v-for="item in lesson.lessons">
-                        <router-link :to="item.slug" :lessonName="item.slug">{{item.title}}</router-link>
-                      </li>
-                    </ul>
-                  </Accordion>
+                  <template v-if="lesson.title">
+                    <router-link :to="lesson.slug" class="search-link">{{lesson.title}}</router-link>
+                  </template>
+                  <template v-else>
+                    <Accordion :title="lesson.name">
+                      <ul id="nav">
+                        <li v-for="item in lesson.lessons">
+                          <router-link :to="item.slug" :lessonName="item.slug">{{item.title}}</router-link>
+                        </li>
+                      </ul>
+                    </Accordion>
+                  </template>
                 </li>
             </ol>
         </div>
         <div class="app__content">
-            <router-view :list="lessonList"></router-view>
+            <router-view :list="searchList"></router-view>
         </div>
     </div>
   </div>
@@ -41,11 +46,13 @@
       return{
         searchQuery:"",
         lessonList:null,
+        searchList:null,
         firstLesson: null,
         domainName: window.siteDomain,
         courseTitle:null,
         active:false,
-        courseName:"node"
+        courseName: "node"
+        // courseName:"rest-api-node-mongodb"
         // courseName: window.courseSlug
       }
     },
@@ -53,9 +60,11 @@
       Accordion: require("@/components/Accordion").default
     },
     created(){
-      axios.get(`/${this.courseName}/lessons`).then(res => {
+      axios.get(`/api/courses/${this.courseName}/lessons`).then(res => {
         console.log(this.courseName);
+        console.log(res);
         this.lessonList = res.data.lessonData;
+        this.searchList = res.data.trackLessonsData;
         this.courseTitle = res.data.courseData.name;
         this.firstLesson = res.data.lessonData[0].lessons[0].slug;
         var firstSlug = this.$route.path;
@@ -75,7 +84,8 @@
       filteredLessons: function () {
         var current = this;
         return this.searchQuery
-          ? this.lessonList.filter(function (data) {
+          ? this.searchList.filter(function (data) {
+              console.log("search data => ",data);
               return data.title
                 .toLowerCase()
                 .includes(current.searchQuery.toLowerCase());
@@ -104,6 +114,17 @@
     &.router-link-exact-active {
       color: #0652dd;
     }
+  }
+}
+.search-link{
+  padding:10px 20px;
+  color:#000;
+  display: block;
+  text-decoration:none;
+  font-size:14px;
+  border-bottom:1px solid #dadada;
+  &:hover{
+    color:#0652dd;
   }
 }
 </style>

@@ -12,7 +12,11 @@
     "prismjs": "^1.20.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
+    "vue-code-highlight": "^0.7.4",
     "vue-loader": "^15.9.2",
+    "vue-markdown": "^2.2.4",
+    "vue-plyr": "^6.0.4",
     "vue-prism-component": "^1.2.0",
     "vue-prismjs": "^1.2.0",
     "vue-router": "^3.1.6",
@@ -27,6 +31,7 @@
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
+    "vue-prism": "^1.0.5",
     "vue-template-compiler": "^2.6.11"
   }
 }
