@@ -3,7 +3,7 @@
         .lesson-box__content
             .lesson-box__excerpt(id="lesson-excerpt" v-html='lessonExcerpt' v-highlight) {{lessonExcerpt}}
             template(v-if="lessonVideo")
-                vue-plyr
+                vue-plyr(:key="lessonVideo")
                     .plyr__video-embed
                         iframe(:src="lessonVideo" allowfullscreen allowtransparency allow="autoplay")
             template(v-else)
@@ -31,7 +31,7 @@ export default {
             lessonTimer:null,
             currentIndex:null,
             // courseName:"node"
-            // courseName: "rest-api-node-mongodb"
+            courseName: "rest-api-node-mongodb"
         };
     },
     created: function () {
@@ -44,7 +44,7 @@ export default {
             let self= this;
             setTimeout(function(){
                 self.trackCourseData();
-            },20000);
+            },10000);
         }
     },
     methods: {
