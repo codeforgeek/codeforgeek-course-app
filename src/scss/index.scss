@@ -265,7 +265,7 @@ body{
 .iframe_responsive {
     position: relative;
     overflow: hidden;
-    padding-bottom: 56.25%;
+    padding-bottom: 46.25%;
     max-width: 100%;
     height: 0;
     iframe{
@@ -279,4 +279,8 @@ body{
 .accordion-content{
     overflow: hidden;
     transition: 0.3s ease all;
+}
+.plyr{
+    max-width:750px !important; 
+    margin:0 auto;
 }

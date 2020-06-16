@@ -28,6 +28,7 @@ export default {
             lessonData:null,
             domainName: window.siteDomain,
             courseName: window.courseSlug,
+            lessonTimer:null,
             currentIndex:null,
             // courseName:"node"
             // courseName: "rest-api-node-mongodb"
@@ -35,22 +36,19 @@ export default {
     },
     created: function () {
         this.getLessonData();
-        this.interval = setInterval(() => this.trackCourseData(), 10000);
     },
+
     watch: {
         lessonName: function (e) {
             this.getLessonData();
+            let self= this;
+            setTimeout(function(){
+                self.trackCourseData();
+            },20000);
         }
     },
     methods: {
-        trackCourseData: function(){
-            let data = {
-                courseSlug: this.courseName,
-                lessonSlug: this.lessonName,
-                isCompleted: false
-            }
-            axios.post("/user/trackcourse", data).then(res => {});
-        },
+        
         getLessonData: function () {
             var e = this;
             axios.get("/api/courses/"+ this.courseName + "/lessons/" + this.lessonName).then(res => {
@@ -59,6 +57,15 @@ export default {
                 this.lessonContent = res.data.content;
                 this.lessonVideo = res.data.videoUrl;
                 this.currentIndex =res.data.lessonOrder;
+            });
+        },
+        trackCourseData:function(){
+            let data = {
+                courseSlug: this.courseName,
+                lessonSlug: this.lessonName,
+                isCompleted: false
+            }
+            axios.post("/user/trackcourse", data).then(res => {
             });
         },
         prevLesson: function(item) {
@@ -84,7 +91,7 @@ export default {
                 console.log(false);
             }
         }
-    },
+    }
     // mounted() {
     // //     import("prismjs/themes/prism-tomorrow.css")
     // //   .then(() => import("prismjs").then(p => Prism.highlightAll()))
