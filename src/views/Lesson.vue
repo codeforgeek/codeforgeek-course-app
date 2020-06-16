@@ -54,7 +54,6 @@ export default {
         getLessonData: function () {
             var e = this;
             axios.get("/api/courses/"+ this.courseName + "/lessons/" + this.lessonName).then(res => {
-                console.log("response => ",res);
                 this.lessonTitle = res.data.title;
                 this.lessonExcerpt = res.data.excerpt;
                 this.lessonContent = res.data.content;
@@ -77,13 +76,9 @@ export default {
             let lessonIndex = item-1;
             let myList = this.list[lessonIndex].slug;
             let listLength = this.list.length;
-            console.log("listLength",listLength);
-            console.log("lessonIndex",lessonIndex);
             if(lessonIndex < listLength){
                 let nextIndex = lessonIndex+1;
-                console.log("next",nextIndex);
                 let nextLesson = this.list[nextIndex].slug;
-                console.log("nextLesson",nextLesson);
                 this.$router.push(nextLesson);
             }else{
                 console.log(false);

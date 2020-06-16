@@ -51,9 +51,9 @@
         domainName: window.siteDomain,
         courseTitle:null,
         active:false,
+        courseName: window.courseSlug
         // courseName: "node"
         // courseName:"rest-api-node-mongodb"
-        courseName: window.courseSlug
       }
     },
     components: {
@@ -61,8 +61,6 @@
     },
     created(){
       axios.get(`/api/courses/${this.courseName}/lessons`).then(res => {
-        console.log(this.courseName);
-        console.log(res);
         this.lessonList = res.data.lessonData;
         this.searchList = res.data.trackLessonsData;
         this.courseTitle = res.data.courseData.name;
@@ -85,7 +83,6 @@
         var current = this;
         return this.searchQuery
           ? this.searchList.filter(function (data) {
-              console.log("search data => ",data);
               return data.title
                 .toLowerCase()
                 .includes(current.searchQuery.toLowerCase());
