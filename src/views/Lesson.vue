@@ -31,7 +31,7 @@ export default {
             lessonTimer:null,
             currentIndex:null,
             // courseName:"node"
-            courseName: "rest-api-node-mongodb"
+            // courseName: "rest-api-node-mongodb"
         };
     },
     created: function () {

@@ -53,7 +53,7 @@
         active:false,
         courseName: window.courseSlug,
         // courseName: "node"
-        courseName:"rest-api-node-mongodb"
+        // courseName:"rest-api-node-mongodb"
       }
     },
     components: {
