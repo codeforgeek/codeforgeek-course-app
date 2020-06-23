@@ -51,7 +51,7 @@
         domainName: window.siteDomain,
         courseTitle:null,
         active:false,
-        courseName: window.courseSlug,
+        courseName: window.courseSlug
         // courseName: "node"
         // courseName:"rest-api-node-mongodb"
       }
@@ -67,15 +67,6 @@
         this.firstLesson = res.data.lessonData[0].lessons[0].slug;
         var firstSlug = this.$route.path;
         "/" == firstSlug && this.$router.push(this.firstLesson);
-        // console.log("firstSlug",firstSlug);
-        // if("/" == firstSlug){
-        //   console.log("true");
-        //   this.$router.push(this.firstLesson);
-        // }else{
-        //   console.log("false");
-        //   this.$router.push(this.firstLesson);
-        // }
-        // this.$router.push(this.firstLesson);
       });
     },
     computed: {

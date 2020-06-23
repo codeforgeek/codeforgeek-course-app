@@ -4,5 +4,6 @@ module.exports = {
     assetsDir: undefined,
     runtimeCompiler: undefined,
     productionSourceMap: undefined,
-    parallel: undefined
+    parallel: undefined,
+    chainWebpack: config => config.optimization.minimize(false)
 }

@@ -47,7 +47,7 @@ export default {
             },10000);
         }
     },
-    methods: {
+    methods:{
         
         getLessonData: function () {
             var e = this;
