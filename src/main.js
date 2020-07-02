@@ -3,18 +3,26 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+import VueAnalytics from 'vue-analytics';
 
 require("./scss/index.scss");
 require("./plugins/index.js");  
 
+Vue.config.productionTip = false
 
-import VueAnalytics from 'vue-analytics';
 Vue.use(VueAnalytics, {
   id: 'UA-46847736-1',
-  router
+  router,
+  autoTracking: {
+    pageviewTemplate (route) {
+      return {
+        page: route.path,
+        location: window.location.href
+      }
+    }
+  }
 })
 
-Vue.config.productionTip = false
 
 new Vue({
   router,

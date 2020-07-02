@@ -9,7 +9,17 @@ Vue.use(VueRouter)
     path: '/:lessonName',
     name: 'lesson',    
     component: Lesson,
-    props:true
+    props:true,
+    meta: {
+      analytics: {
+        pageviewTemplate (route) {
+          return {
+            page: route.path,
+            location: window.location.href
+          }
+        }
+      }
+    }
   }
 ]
 

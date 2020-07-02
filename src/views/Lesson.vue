@@ -37,18 +37,17 @@ export default {
     created: function () {
         this.getLessonData();
     },
-
     watch: {
         lessonName: function (e) {
             this.getLessonData();
             let self= this;
+            this.$ga.page('/:lessonName');
             setTimeout(function(){
                 self.trackCourseData();
-            },10000);
+            },10000);   
         }
     },
     methods:{
-        
         getLessonData: function () {
             var e = this;
             axios.get("/api/courses/"+ this.courseName + "/lessons/" + this.lessonName).then(res => {
